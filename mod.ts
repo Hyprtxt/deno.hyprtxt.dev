@@ -1,3 +1,5 @@
+import Deck from "https://deno.land/x/cards@1.0.0/deck.js"
+
 function handleRequest(request) {
     const { pathname } = new URL(request.url);
   
@@ -22,6 +24,7 @@ function handleRequest(request) {
       // Use stringify function to convert javascript object to JSON string.
       const json = JSON.stringify({
         message: "Hello from Deno Deploy, YEAH!",
+        cards: Deck.getNewCards()
       });
   
       return new Response(json, {
