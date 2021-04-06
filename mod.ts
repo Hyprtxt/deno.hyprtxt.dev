@@ -1,7 +1,11 @@
 import Deck from "https://deno.land/x/cards@2.0.0/deck.ts"
 
+let count = 0;
+
 function handleRequest(request) {
-    const { pathname } = new URL(request.url);
+  const { pathname } = new URL(request.url);
+  
+  console.log(`Received request #${++count} to ${pathname}`);
   
     // // Respond with HTML
     // if (pathname.startsWith("/html")) {
