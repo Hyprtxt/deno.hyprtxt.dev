@@ -1,4 +1,4 @@
-import Deck from "https://deno.land/x/cards@1.0.0/deck.js"
+import Deck from "https://deno.land/x/cards@2.0.0/deck.ts"
 
 function handleRequest(request) {
     const { pathname } = new URL(request.url);
