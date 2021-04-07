@@ -1,8 +1,5 @@
-const faviconFromGithub = async () => {
-  const favicon = new URL(
-    "/Hyprtxt/deno.hyprtxt.dev/main/public/favicon.ico",
-    "https://raw.githubusercontent.com"
-  )
+const faviconFromGithub = async (URL_BASE: string) => {
+  const favicon = new URL("public/favicon.ico", URL_BASE)
   const response = await fetch(favicon.toString())
   response.headers.set("content-type", "image/x-icon")
   return response

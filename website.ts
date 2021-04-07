@@ -1,3 +1,5 @@
+// import { serveFile } from "https://deno.land/std@0.92.0/http/file_server.ts"
+
 // import { config } from "https://deno.land/x/dotenv/mod.ts"
 // console.log(config({ safe: true }))
 
@@ -7,37 +9,43 @@ import favicon from "./functions/favicon.ts"
 
 let count = 0
 
+const serveThing = async (path: string, contentType: string) => {
+  const isLocalMode = () =>
+    import.meta.url.split(":")[0] === "file" ? true : false
+  let URL_BASE: string
+  if (isLocalMode()) {
+    URL_BASE = "http://localhost/deno.hyprtxt.dev/"
+  } else {
+    URL_BASE = import.meta.url
+  }
+  const favicon = new URL(path, URL_BASE)
+  const response = await fetch(favicon.toString())
+  response.headers.set("content-type", contentType)
+  return response
+}
+
 // const isDenoDeploy = () =>
 //   Deno.env.DENO_DEPLOYMENT_ID !== "undefined" ? false : true
-
-// if ( isDevelopment? )
-// import.meta.url = http://localhost/deno.hyprtxt.dev/
 
 async function handleRequest(request: any) {
   const { pathname } = new URL(request.url)
   console.log(`Received request #${++count} to ${pathname}`)
   if (pathname.startsWith("/favicon.ico")) {
-    return await favicon()
+    return await serveThing("public/favicon.ico", "image/x-icon")
   }
 
   if (pathname.startsWith("/style.css")) {
+    return await serveThing("public/css/style.css", "text/css charset=utf-8")
     //  Construct a new URL to style.css by using the URL
     //  of the script (mod.ts) as base (import.meta.url).
-    const style = new URL(
-      "client/css/style.css",
-      // This should be github in production
-      // A local deno server for developers?
-      // For now NGINX
-      // "http://localhost/deno.hyprtxt.dev/"
-      import.meta.url
-    )
-    const response = await fetch(style.toString())
-    response.headers.set("content-type", "text/css charset=utf-8")
-    return response
+    // const style = new URL("public/css/style.css", URL_BASE)
+    // const response = await fetch(style.toString())
+    // response.headers.set("content-type", "text/css charset=utf-8")
+    // return response
   }
   console.log("META URL", import.meta.url)
   // if (pathname.startsWith("/js/script.js")) {
-  //   const script = new URL("./client/js/script.js", import.meta.url)
+  //   const script = new URL("./public/js/script.js", import.meta.url)
   //   return fetch(script.toString())
   // }
   if (pathname.startsWith("/play")) {

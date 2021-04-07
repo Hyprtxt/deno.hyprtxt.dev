@@ -25,7 +25,7 @@ const App = () => {
       <head>
         <title>Hello from JSX</title>
         {/* <script src="js/script.js" type="module" /> */}
-        <link rel="stylesheet" src="style.css" />
+        <link rel="stylesheet" href="style.css" />
       </head>
       <body>
         <h1>Hello world! THis is PREACT</h1>
