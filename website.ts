@@ -1,5 +1,5 @@
 import Play from "./fun.js"
-
+import App from "./app.jsx"
 import favicon from "./functions/favicon.ts"
 
 let count = 0
@@ -10,6 +10,19 @@ async function handleRequest(request: any) {
   if (pathname.startsWith("/favicon.ico")) {
     return await favicon()
   }
+  if (pathname.startsWith("/style.css")) {
+    //  Construct a new URL to style.css by using the URL
+    //  of the script (mod.ts) as base (import.meta.url).
+    const style = new URL("style.css", import.meta.url)
+    // Fetch the asset and return the fetched response
+    // to the client.
+    return fetch(style.toString())
+  }
+  console.log("META URL", import.meta.url)
+  // if (pathname.startsWith("/js/script.js")) {
+  //   const script = new URL("./client/js/script.js", import.meta.url)
+  //   return fetch(script.toString())
+  // }
   if (pathname.startsWith("/play")) {
     const HOW_MANY_DEFAULT = 100
     let how_many = HOW_MANY_DEFAULT
@@ -49,11 +62,13 @@ async function handleRequest(request: any) {
       },
     })
   }
-  return new Response("<p>Hello World</p>", {
-    headers: {
-      "content-type": "text/html; charset=UTF-8",
-    },
-  })
+
+  return App.render()
+  // new Response("<p>Hello World</p>", {
+  //   headers: {
+  //     "content-type": "text/html; charset=UTF-8",
+  //   },
+  // })
 }
 
 addEventListener("fetch", (event: any) => {

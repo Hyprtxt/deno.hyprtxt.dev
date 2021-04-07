@@ -3,7 +3,7 @@ const faviconFromGithub = async () => {
     "/Hyprtxt/deno.hyprtxt.dev/main/public/favicon.ico",
     "https://raw.githubusercontent.com"
   )
-  const response = await fetch(favicon)
+  const response = await fetch(favicon.toString())
   response.headers.set("content-type", "image/x-icon")
   return response
 }
