@@ -1,7 +1,6 @@
-  
 import Poker from "../video_poker/score.js"
 
-const { VALUES_INDEX, SUITS_INDEX, STRAIGHTS_LIST, ROYAL_STRAIGHT } = Poker;
+const { VALUES_INDEX, SUITS_INDEX, STRAIGHTS_LIST, ROYAL_STRAIGHT } = Poker
 
 const STRATEGY_RULES = [
   { number: 0, rule: "Is Filler" },
@@ -24,14 +23,14 @@ const STRATEGY_RULES = [
   { number: 14, rule: "Hold Suited 10/J, 10/Q, or 10/K" },
   { number: 15, rule: "Hold 1 High Card" },
   { number: 16, rule: "Hold Nothing" },
-];
+]
 
 const ONLY_HIGH_CARDS = [
   VALUES_INDEX[10],
   VALUES_INDEX[11],
   VALUES_INDEX[12],
   VALUES_INDEX[0],
-];
+]
 
 const HIGH_CARDS_ORDER = [
   VALUES_INDEX[1],
@@ -47,7 +46,7 @@ const HIGH_CARDS_ORDER = [
   VALUES_INDEX[11],
   VALUES_INDEX[12],
   VALUES_INDEX[0],
-];
+]
 
 const OUTSIDE_STRAIGHTS = [
   [VALUES_INDEX[1], VALUES_INDEX[2], VALUES_INDEX[3], VALUES_INDEX[4]],
@@ -58,9 +57,9 @@ const OUTSIDE_STRAIGHTS = [
   [VALUES_INDEX[6], VALUES_INDEX[7], VALUES_INDEX[8], VALUES_INDEX[9]],
   [VALUES_INDEX[7], VALUES_INDEX[8], VALUES_INDEX[9], VALUES_INDEX[10]],
   [VALUES_INDEX[8], VALUES_INDEX[9], VALUES_INDEX[10], VALUES_INDEX[11]],
-];
+]
 
-const ALL_STRAIGHTS = STRAIGHTS_LIST.concat([ROYAL_STRAIGHT]);
+const ALL_STRAIGHTS = STRAIGHTS_LIST.concat([ROYAL_STRAIGHT])
 
 export default {
   VALUES_INDEX,
@@ -72,4 +71,4 @@ export default {
   STRAIGHTS_LIST,
   ROYAL_STRAIGHT,
   ALL_STRAIGHTS,
-};
+}
