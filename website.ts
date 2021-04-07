@@ -5,13 +5,13 @@ let count = 0;
 function handleRequest(request: any) {
   const { pathname } = new URL(request.url);
   // console.log(`Received request #${++count} to ${pathname}`);
-  if (pathname.startsWith("/favicon")) {
-    return new Response("", {
-      headers: {
-        "content-type": "image/x-icon",
-      },
-    });
-  }
+  // if (pathname.startsWith("/favicon")) {
+  //   return new Response("", {
+  //     headers: {
+  //       "content-type": "image/x-icon",
+  //     },
+  //   });
+  // }
 
   // Respond with JSON
   // if (pathname.startsWith("/json")) {
