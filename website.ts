@@ -1,3 +1,6 @@
+// import { config } from "https://deno.land/x/dotenv/mod.ts"
+// console.log(config({ safe: true }))
+
 import Play from "./fun.js"
 import App from "./app.jsx"
 import favicon from "./functions/favicon.ts"
@@ -13,6 +16,7 @@ async function handleRequest(request: any) {
   if (pathname.startsWith("/favicon.ico")) {
     return await favicon()
   }
+
   if (pathname.startsWith("/style.css")) {
     //  Construct a new URL to style.css by using the URL
     //  of the script (mod.ts) as base (import.meta.url).
@@ -67,6 +71,14 @@ async function handleRequest(request: any) {
     })
 
     return new Response(json, {
+      headers: {
+        "content-type": "application/json; charset=UTF-8",
+      },
+    })
+  }
+
+  if (pathname.startsWith("/env")) {
+    return new Response(JSON.stringify(Deno.env.toObject(), null, 2), {
       headers: {
         "content-type": "application/json; charset=UTF-8",
       },
