@@ -14,11 +14,11 @@ async function handleRequest(request: any) {
     //  Construct a new URL to style.css by using the URL
     //  of the script (mod.ts) as base (import.meta.url).
     const style = new URL(
-      "css/style.css",
+      "client/css/style.css",
       // This should be github in production
       // A local deno server for developers?
       // For now NGINX
-      // "http://localhost/deno.hyprtxt.dev/client/"
+      // "http://localhost/deno.hyprtxt.dev/"
       import.meta.url
     )
     // Fetch the asset and return the fetched response
