@@ -1,4 +1,4 @@
-import Deck from "./deck.js"
+import Deck from "https://deno.land/x/cards@2.0.0/deck.ts"
 
 const getHandSuitsValuesSorted = (input_cards) => {
     let hand_values;

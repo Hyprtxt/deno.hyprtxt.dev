@@ -1,5 +1,5 @@
   
-import Poker from "./poker.js"
+import Poker from "../video_poker/score.js"
 
 const { VALUES_INDEX, SUITS_INDEX, STRAIGHTS_LIST, ROYAL_STRAIGHT } = Poker;
 

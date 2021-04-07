@@ -1,7 +1,7 @@
 // import Deck from "./deck.js"
-import Deck from "https://deno.land/x/cards@1.0.0/deck.js"
-import Poker from "./poker.js"
-import Strategy from "./strategy.js"
+import Deck from "https://deno.land/x/cards@2.0.0/deck.ts"
+import Poker from "./video_poker/score.js"
+import Strategy from "./strategy/simple.js"
 
 import * as Colors from "https://deno.land/std@0.91.0/fmt/colors.ts"
 
