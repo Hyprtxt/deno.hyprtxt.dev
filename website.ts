@@ -4,7 +4,6 @@ let count = 0;
 
 function handleRequest(request: any) {
   const { pathname } = new URL(request.url);
-
   console.log(`Received request #${++count} to ${pathname}`);
   if (pathname.startsWith("/favicon")) {
     return new Response("", {
