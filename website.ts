@@ -4,6 +4,9 @@ import favicon from "./functions/favicon.ts"
 
 let count = 0
 
+// if ( isDevelopment? )
+// import.meta.url = http://localhost/deno.hyprtxt.dev/
+
 async function handleRequest(request: any) {
   const { pathname } = new URL(request.url)
   console.log(`Received request #${++count} to ${pathname}`)
@@ -21,9 +24,9 @@ async function handleRequest(request: any) {
       // "http://localhost/deno.hyprtxt.dev/"
       import.meta.url
     )
-    // Fetch the asset and return the fetched response
-    // to the client.
-    return fetch(style.toString())
+    const response = await fetch(style.toString())
+    response.headers.set("content-type", "text/css charset=utf-8")
+    return response
   }
   console.log("META URL", import.meta.url)
   // if (pathname.startsWith("/js/script.js")) {
