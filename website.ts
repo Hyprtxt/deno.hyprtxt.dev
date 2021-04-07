@@ -7,6 +7,9 @@ import favicon from "./functions/favicon.ts"
 
 let count = 0
 
+// const isDenoDeploy = () =>
+//   Deno.env.DENO_DEPLOYMENT_ID !== "undefined" ? false : true
+
 // if ( isDevelopment? )
 // import.meta.url = http://localhost/deno.hyprtxt.dev/
 
@@ -71,6 +74,14 @@ async function handleRequest(request: any) {
     })
 
     return new Response(json, {
+      headers: {
+        "content-type": "application/json; charset=UTF-8",
+      },
+    })
+  }
+
+  if (pathname.startsWith("/import")) {
+    return new Response(JSON.stringify(import.meta, null, 2), {
       headers: {
         "content-type": "application/json; charset=UTF-8",
       },
