@@ -2,21 +2,26 @@ import Play from "./fun.js";
 
 let count = 0;
 
-function handleRequest(request: any) {
+async function handleRequest(request: any) {
+  const HOW_MANY_DEFAULT = 100;
   const { pathname } = new URL(request.url);
-  // console.log(`Received request #${++count} to ${pathname}`);
-  // if (pathname.startsWith("/favicon")) {
-  //   return new Response("", {
-  //     headers: {
-  //       "content-type": "image/x-icon",
-  //     },
-  //   });
-  // }
-
+  console.log(`Received request #${++count} to ${pathname}`);
+  if (pathname.startsWith("/favicon.ico")) {
+    const favicon =
+      "https://raw.githubusercontent.com/Hyprtxt/deno.hyprtxt.dev/main/favicon.ico";
+    const response = await fetch(favicon);
+    response.headers.set("content-type", "image/x-icon");
+    return response;
+  }
+  let how_many = HOW_MANY_DEFAULT;
+  const maybe_number = parseInt(pathname.replace("/", ""));
+  if (maybe_number > 0 && maybe_number < 10001) {
+    how_many = maybe_number;
+  }
   // Respond with JSON
   // if (pathname.startsWith("/json")) {
   // Use stringify function to convert javascript object to JSON string.
-  const HOW_MANY = 100;
+
   const start = Date.now();
   let result = 0;
   let records = [];
@@ -27,15 +32,15 @@ function handleRequest(request: any) {
     result = result + game.score;
     records.push(game);
     //   console.log(result)
-  } while (i < HOW_MANY);
+  } while (i < how_many);
   const how_long = Date.now() - start;
-  console.log(result, how_long, HOW_MANY, how_long / HOW_MANY);
+  console.log(result, how_long, how_many, how_long / how_many);
 
   const json = JSON.stringify({
     result,
     how_long,
-    HOW_MANY,
-    each: how_long / HOW_MANY,
+    how_many,
+    each: how_long / how_many,
     records,
   });
 

@@ -27,22 +27,22 @@ const Play = () => {
     strat,
     score: Poker.score(final).win - 5,
   };
-  console.log(
-    " " +
-      hand.map((card, index) => {
-        if (integerStrat.indexOf(index + 1) === -1) {
-          return Colors.red(card);
-        } else {
-          return Colors.green(card);
-        }
-      }) +
-      "\n " +
-      Colors.green(final + "\n"),
-    Colors.blue(strat.rule_number + " ") +
-      "- " +
-      Colors.cyan(strat.rule + "\n"),
-    Poker.score(final)
-  );
+  // console.log(
+  //   " " +
+  //     hand.map((card, index) => {
+  //       if (integerStrat.indexOf(index + 1) === -1) {
+  //         return Colors.red(card);
+  //       } else {
+  //         return Colors.green(card);
+  //       }
+  //     }) +
+  //     "\n " +
+  //     Colors.green(final + "\n"),
+  //   Colors.blue(strat.rule_number + " ") +
+  //     "- " +
+  //     Colors.cyan(strat.rule + "\n"),
+  //   Poker.score(final)
+  // );
   return message;
 };
 
