@@ -9,7 +9,7 @@ async function handleRequest(request: any) {
   const { pathname } = new URL(request.url)
   console.log(`Received request #${++count} to ${pathname}`)
   if (pathname.startsWith("/favicon.ico")) {
-    return favicon()
+    return await favicon()
   }
   let how_many = HOW_MANY_DEFAULT
   const maybe_number = parseInt(pathname.replace("/", ""))
