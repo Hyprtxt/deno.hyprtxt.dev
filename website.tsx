@@ -5,10 +5,11 @@ import {
   serve,
   serveStatic,
 } from "https://deno.land/x/sift@0.2.0/mod.ts"
+// import type { PathParams } from "https://deno.land/x/sift@0.2.0/mod.ts"
 
 import App from "./app.jsx"
 import NotFound from "./components/NotFound.jsx"
-import Play from "./fun.js"
+import PlayMany from "./fun.js"
 
 let count = 0
 
@@ -28,6 +29,25 @@ serve({
   "/": () => jsx(<App />),
   "/meta": () => json({ meta: import.meta }),
   "/env": () => json({ test: "INFORMATION" }),
+  "/play/:howMany": (request, params) => {
+    return params !== undefined
+      ? json(PlayMany(params.howMany))
+      : json({ doThis: "/play/10" })
+  },
+
+  "/blog/:slug": (request, params) => {
+    return params !== undefined
+      ? new Response(`Hello, you visited ${params.slug}!`)
+      : json({ the: "BLAG" })
+  },
+  "/css/:filename+": serveStatic("public/css", {
+    baseUrl: getBaseURL(),
+    intervene: x => {
+      console.log(x)
+      x.headers.set("content-type", "text/css; charset=utf-8")
+      return x
+    },
+  }),
   "/:filename+": serveStatic("public", { baseUrl: getBaseURL() }),
   404: () => jsx(<NotFound />, { status: 404 }),
 })
