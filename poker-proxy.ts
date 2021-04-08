@@ -8,7 +8,7 @@ async function handleRequest(request: any) {
   if (pathname.startsWith("/")) {
     const diced = pathname.split("/")
     const stuff = diced.slice(1, diced.length).join("/")
-    return stuff ? serveThing(stuff) : serveThing("/index.html")
+    return stuff ? await serveThing(stuff) : await serveThing("/index.html")
   }
 }
 

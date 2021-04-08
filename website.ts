@@ -4,15 +4,15 @@
 // console.log(config({ safe: true }))
 
 // create subprocess
-const p = Deno.run({
-  cmd: ["file_server", "public"],
-})
+// const p = Deno.run({
+//   cmd: ["file_server", "public"],
+// })
 
 // await its completion
-await p.status()
+// await p.status()
 
 import Play from "./fun.js"
-import App from "./app.jsx"
+// import App from "./app.jsx"
 // import favicon from "./functions/favicon.ts"
 
 let count = 0
@@ -35,7 +35,7 @@ let count = 0
 // const isDenoDeploy = () =>
 //   Deno.env.DENO_DEPLOYMENT_ID !== "undefined" ? false : true
 
-async function handleRequest(request: any) {
+const handleRequest = (request: any) => {
   const { pathname } = new URL(request.url)
   console.log(`Received request #${++count} to ${pathname}`)
 
@@ -100,12 +100,12 @@ async function handleRequest(request: any) {
     })
   }
 
-  return App.render()
-  // new Response("<p>Hello World</p>", {
-  //   headers: {
-  //     "content-type": "text/html; charset=UTF-8",
-  //   },
-  // })
+  // return App.render()
+  return new Response("<p>Hello World</p>", {
+    headers: {
+      "content-type": "text/html; charset=UTF-8",
+    },
+  })
 }
 
 addEventListener("fetch", (event: any) => {
