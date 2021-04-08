@@ -1,6 +1,7 @@
 import {
   h,
   jsx,
+  json,
   serve,
   serveStatic,
 } from "https://deno.land/x/sift@0.2.0/mod.ts"
@@ -25,20 +26,9 @@ const getBaseURL = () => {
 
 serve({
   "/": () => jsx(<App />),
+  "/meta": () => json({ meta: import.meta }),
+  "/env": () => json({ test: "INFORMATION" }),
   "/:filename+": serveStatic("public", { baseUrl: getBaseURL() }),
-  "/meta": () =>
-    new Response(JSON.stringify(import.meta, null, 2), {
-      headers: {
-        "content-type": "application/json; charset=UTF-8",
-      },
-    }),
-  "/env": () =>
-    new Response(JSON.stringify(Deno.env.toObject(), null, 2), {
-      headers: {
-        "content-type": "application/json; charset=UTF-8",
-      },
-    }),
-  // 404: () => new Response("not found"),
   404: () => jsx(<NotFound />, { status: 404 }),
 })
 
@@ -90,39 +80,39 @@ serve({
 //   // }
 //   // console.log("META URL", import.meta.url)
 
-//   if (pathname.startsWith("/play")) {
-//     const HOW_MANY_DEFAULT = 100
-//     let how_many = HOW_MANY_DEFAULT
-//     const maybe_number = parseInt(pathname.replace("/play/", ""))
-//     if (maybe_number > 0 && maybe_number < 10001) {
-//       how_many = maybe_number
-//     }
-//     const start = Date.now()
-//     let result = 0
-//     let records = []
-//     let i = 0
-//     do {
-//       const game = Play()
-//       i = i + 1
-//       result = result + game.score
-//       records.push(game)
-//       //   console.log(result)
-//     } while (i < how_many)
-//     const how_long = Date.now() - start
-//     console.log(result, how_long, how_many, how_long / how_many)
-//     const json = JSON.stringify({
-//       result,
-//       how_long,
-//       how_many,
-//       each: how_long / how_many,
-//       records,
-//     })
-//     return new Response(json, {
-//       headers: {
-//         "content-type": "application/json; charset=UTF-8",
-//       },
-//     })
+// if (pathname.startsWith("/play")) {
+//   const HOW_MANY_DEFAULT = 100
+//   let how_many = HOW_MANY_DEFAULT
+//   const maybe_number = parseInt(pathname.replace("/play/", ""))
+//   if (maybe_number > 0 && maybe_number < 10001) {
+//     how_many = maybe_number
 //   }
+//   const start = Date.now()
+//   let result = 0
+//   let records = []
+//   let i = 0
+//   do {
+//     const game = Play()
+//     i = i + 1
+//     result = result + game.score
+//     records.push(game)
+//     //   console.log(result)
+//   } while (i < how_many)
+//   const how_long = Date.now() - start
+//   console.log(result, how_long, how_many, how_long / how_many)
+//   const json = JSON.stringify({
+//     result,
+//     how_long,
+//     how_many,
+//     each: how_long / how_many,
+//     records,
+//   })
+//   return new Response(json, {
+//     headers: {
+//       "content-type": "application/json; charset=UTF-8",
+//     },
+//   })
+// }
 
 //   // if (pathname.startsWith("/env")) {
 
