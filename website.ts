@@ -12,7 +12,7 @@
 // await p.status()
 
 import Play from "./fun.js"
-// import App from "./app.jsx"
+import App from "./app.jsx"
 // import favicon from "./functions/favicon.ts"
 
 let count = 0
@@ -100,12 +100,12 @@ const handleRequest = (request: any) => {
     })
   }
 
-  // return App.render()
-  return new Response("<p>Hello World</p>", {
-    headers: {
-      "content-type": "text/html; charset=UTF-8",
-    },
-  })
+  return App.render()
+  // return new Response("<p>Hello World</p>", {
+  //   headers: {
+  //     "content-type": "text/html; charset=UTF-8",
+  //   },
+  // })
 }
 
 addEventListener("fetch", (event: any) => {
