@@ -1,6 +1,6 @@
 console.log("HELLO Good Job")
 
-import React from "https://esm.sh/react"
+// import React from "https://esm.sh/react"
 
 // import { h, Component, render } from "https://unpkg.com/preact?module"
 // import htm from "https://unpkg.com/htm?module"

@@ -5,7 +5,7 @@ const App = () => {
     <html>
       <head>
         <title>Hello from JSX</title>
-        {/* <script src="js/script.js" type="module" /> */}
+        <script src="js/script.js" type="module" />
         <link rel="stylesheet" href="css/style.css" />
       </head>
       <body>
