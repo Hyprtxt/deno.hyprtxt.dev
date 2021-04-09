@@ -2,7 +2,7 @@ import { h } from "https://x.lcas.dev/preact@10.5.12/mod.js"
 
 const App = () => {
   return (
-    <html>
+    <html lang="en-US">
       <head>
         <title>Hello from JSX</title>
         <script src="js/script.js" type="module" />

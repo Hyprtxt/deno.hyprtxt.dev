@@ -1,0 +1,15 @@
+# We're creating a new type named `PokerGame` to represent a round of video poker
+
+type PokerGame {
+  hand: [String!]
+  final: [String!]
+  strategy: [String!]
+  rule: String!
+  rule_number: String!
+  score: String!
+}
+
+type Query {
+  # A new field in the Query operation to retrieve all quotes.
+  allPokerGames: [PokerGame!]
+}
