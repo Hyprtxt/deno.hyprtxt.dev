@@ -69,7 +69,7 @@ const AmmoCalc = (props: any) => {
               value={zip}
             />
             <div id="zipHelp" className="form-text">
-              Put in a 5 digit zip code!
+              Put in a 4 or 5 digit zip code!
             </div>
             <p>{result}</p>
           </div>
