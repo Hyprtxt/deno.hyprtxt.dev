@@ -1,6 +1,4 @@
-import { h, serve, jsx } from "../sift.ts"
-
-// SIFT DONE
+import { h, serve, jsx } from "https://deno.land/x/sift@0.2.0/mod.ts"
 
 const digits_count = (n: number) => {
   let count = 0
