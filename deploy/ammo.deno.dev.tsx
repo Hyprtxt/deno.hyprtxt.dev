@@ -24,7 +24,7 @@ const Layout = (props: any) => {
       <body>
         <nav class="navbar navbar-light bg-light">
           <a class="navbar-brand" href="/">
-            🏠 Home
+            🎯 Can we Ammo Ship your Zip?
           </a>
         </nav>
         <div class="container mt-5">{children}</div>
