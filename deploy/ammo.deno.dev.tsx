@@ -2,6 +2,22 @@ import { h, serve, jsx } from "../sift.ts"
 
 // SIFT DONE
 
+const digits_count = (n: number) => {
+  let count = 0
+  if (n >= 1) ++count
+  while (n / 10 >= 1) {
+    n /= 10
+    ++count
+  }
+  return count
+}
+
+const getQueryStringParam = (url: string, param: string) => {
+  const searchParams = new URLSearchParams(new URL(url).search.slice(1))
+  const queryParam = searchParams.get(param)
+  return queryParam ? queryParam : ""
+}
+
 const Layout = (props: any) => {
   const { children, script } = props
   return (
@@ -19,7 +35,6 @@ const Layout = (props: any) => {
           crossOrigin="anonymous"
         />
         <title>Hello, This is a Deno Powered Website</title>
-        <link rel="stylesheet" href="css/style.css" />
       </head>
       <body>
         <nav class="navbar navbar-light bg-light">
@@ -28,43 +43,10 @@ const Layout = (props: any) => {
           </a>
         </nav>
         <div class="container mt-5">{children}</div>
-        {/* <p>Server Side Rendered React should be simple</p> */}
-        <script
-          src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-          crossOrigin="anonymous"
-        ></script>
-        <script
-          src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-          integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-          crossOrigin="anonymous"
-        ></script>
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-          integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
-          crossOrigin="anonymous"
-        ></script>
-        <script src="js/global.js" type="module" />
         {script && <script src={`js/${script}`} type="module" />}
       </body>
     </html>
   )
-}
-
-const digits_count = (n: number) => {
-  let count = 0
-  if (n >= 1) ++count
-  while (n / 10 >= 1) {
-    n /= 10
-    ++count
-  }
-  return count
-}
-
-export const getQueryStringParam = (url: string, param: string) => {
-  const searchParams = new URLSearchParams(new URL(url).search.slice(1))
-  const queryParam = searchParams.get(param)
-  return queryParam ? queryParam : ""
 }
 
 const AmmoCalc = (props: any) => {
@@ -102,7 +84,7 @@ const AmmoCalc = (props: any) => {
   )
 }
 
-export const handleAmmoCalc = async (request: Request) => {
+const handleAmmoCalc = async (request: Request) => {
   let result = ""
   const zip = parseInt(getQueryStringParam(request.url, "zip"))
   const digits = digits_count(zip)
