@@ -1,13 +1,31 @@
-console.log("HELLO Good Job")
-
-// import React from "https://esm.sh/react"
-
-// import { h, Component, render } from "https://unpkg.com/preact?module"
-// import htm from "https://unpkg.com/htm?module"
+import { h, Component, render } from "https://cdn.skypack.dev/preact"
+import { useState } from "https://cdn.skypack.dev/preact/hooks"
+import htm from "https://unpkg.com/htm?module"
 
 // Initialize htm with Preact
-// const html = htm.bind(h)
+const html = htm.bind(h)
 
-// const App = props => html`<h1>Hello ${props.name}!</h1>`
+const App = ({ name, children }) => {
+  return html`<h1>HI THERE ${name}!</h1>
+    ${children}`
+}
 
-// render(html`<${App} name="World" />`, document.getElementById("App"))
+const Counter = () => {
+  const [count, setCount] = useState(0)
+  const increment = () => setCount(count + 1)
+  // You can also pass a callback to the setter
+  const decrement = () => setCount(currentCount => currentCount - 1)
+
+  return html`
+    <div>
+      <p>Count: ${count}</p>
+      <button onClick=${increment}>Increment</button>
+      <button onClick=${decrement}>Decrement</button>
+    </div>
+  `
+}
+
+render(
+  html`<${App} name="Person"><${Counter} /><${Counter} /><${Counter} /><//>`,
+  document.body
+)
