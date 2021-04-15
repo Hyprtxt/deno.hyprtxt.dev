@@ -142,7 +142,7 @@ const handleAmmoCalc = async (request: Request) => {
   } else {
     // ADD A VALID ZIP
   }
-  return jsx(<AmmoCalc zip={zip} result={result} />, { status: 404 })
+  return jsx(<AmmoCalc zip={zip} result={result} />, { status: 200 })
 }
 
 serve({
